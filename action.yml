@@ -1,8 +1,8 @@
 name: 'Fetch first comment of PR'
 description: 'fetch first comment of a pr'
 outputs:
-  time: # id of output
-    first-comment: 'first comment of pr'
+  first-comment:
+    description: 'first comment of pr'
 runs:
   using: 'node12'
   main: 'index.js'
