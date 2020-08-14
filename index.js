@@ -10,23 +10,15 @@ async function fetchPR() {
     const repository = process.env.GITHUB_REPOSITORY;
     const [owner, repo] = repository.split("/");
 
-    console.log(process.env);
-
     const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
 
-    const { data: comments } = await octokit.issues.listComments({
+    const {'data': data} = await octokit.pulls.get({
       owner: owner,
       repo: repo,
-      issue_number: process.env.PR_NUMBER,
+      pull_number: process.env.PR_NUMBER,
     });
 
-    console.log("???")
-
-    const payload = JSON.stringify(github.context.payload, undefined, 2);
-    console.log(`The event payload: ${payload}`);
-
-    const firstCommnet = JSON.stringify(comments[0], undefined, 2);
-    console.log(`first comments ${firstCommnet}`)
+    core.setOutput('first-comment', data.body);
   } catch (error) {
     core.setFailed(error.message);
   }
