@@ -4,11 +4,9 @@ intpus:
   GITHUB_TOKEN:
     description: 'github token'
     required: true
-    default: ${{ secrets.GITHUB_TOKEN }}
   PR_NUMBER:
     description: 'pr number'
     required: true
-    default:  ${{ github.event.number }}
 outputs:
   first-comment:
     description: 'first comment of pr'
