@@ -12,9 +12,7 @@ async function fetchPR() {
 
     console.log(process.env);
 
-    const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
-
-    console.log(process.env.GITHUB_TOKEN)
+    const octokit = github.getOctokit(process.env.ACTIONS_RUNTIME_TOKEN);
 
     const { data: comments } = await octokit.issues.listComments({
       owner: owner,
