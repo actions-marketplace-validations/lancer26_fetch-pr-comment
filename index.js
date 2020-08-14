@@ -10,12 +10,12 @@ async function fetchPR() {
     const repository = process.env.GITHUB_REPOSITORY;
     const [owner, repo] = repository.split("/");
 
-    const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+    const octokit = github.getOctokit(process.env.INPUT_GITHUB_TOKEN);
 
     const {'data': data} = await octokit.pulls.get({
       owner: owner,
       repo: repo,
-      pull_number: process.env.PR_NUMBER,
+      pull_number: process.env.INPUT_PR_NUMBER,
     });
 
     core.setOutput('first-comment', data.body);
